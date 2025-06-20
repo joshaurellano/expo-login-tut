@@ -58,7 +58,7 @@ const Home =({navigation }: any) => {
     const handleLogout = async () => {
         await axios.post('http://localhost:4000/auth/logout',{withCredentials: true})
         // navigation.replace("Login");
-        router.navigate('/Login');
+        router.navigate('/');
     }
 
     useEffect(() => {

@@ -1,50 +1,33 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, View } from 'react-native';
-
 import axios from 'axios';
-import Home from './Home';
-import Login from './Login';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { Alert, Button, Text, TextInput, View } from 'react-native';
 
-const Drawer = createDrawerNavigator();
-axios.defaults.withCredentials = true;
+const Login = ({ navigation }: any) => {
+    const router = useRouter(); 
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-export default function Index({navigation }: any) {
-    const [token, setToken] = useState('')
-    const [loading, setLoading] = useState (true);
-    useEffect (() => {
-        const checkUser = async () => {
-            try{
-            const response = await axios.get('http://localhost:4000/auth',{withCredentials: true})
-            // console.log(check_user.data.status)
-            setToken(response.data);
-            } catch (error) {
-                setToken('')
-            }
-            setLoading(false);
-        };
-        checkUser();
-    }, []);
-
-     if (loading) {
-    // While checking auth status
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
+    const handleLogin = async () => {
+        try{
+            const response = await axios.post('http://localhost:4000/auth/login',{
+                username,
+                password
+            });
+             router.replace('/Home');
+        } catch (error) {
+            Alert.alert("Login failed, check your crendentials")
+        }
+    }
 
     return (
-        <Drawer.Navigator>
-            {
-                token ? (
-                
-                    <Drawer.Screen name="Home" component={Home} />
-                ) : (
-                    <Drawer.Screen name="login" component={Login} />
-                )   
-            }
-        </Drawer.Navigator>
-    );
+        <View style={{ padding: 20}}>
+            <Text>Username: </Text>
+            <TextInput value={username} onChangeText={setUsername} style={{ borderWidth: 1, marginBottom: 10, padding: 5}} />
+            <Text>Password</Text>
+            <TextInput value={password} onChangeText={setPassword} secureTextEntry style={{ borderWidth: 1, marginBottom: 10, padding: 5}} />
+            <Button title="Login" onPress={handleLogin} />
+        </View>
+    )
 }
+export default Login
