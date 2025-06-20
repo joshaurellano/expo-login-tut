@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 
 import axios from 'axios';
-import HomeScreen from './HomeScreen';
-import LoginScreen from './LoginScreen';
+import Home from './Home';
+import Login from './Login';
 
 const Drawer = createDrawerNavigator();
 axios.defaults.withCredentials = true;
@@ -41,9 +41,9 @@ export default function Index({navigation }: any) {
             {
                 token ? (
                 
-                    <Drawer.Screen name="Home" component={HomeScreen} />
+                    <Drawer.Screen name="Home" component={Home} />
                 ) : (
-                    <Drawer.Screen name="Login" component={LoginScreen} />
+                    <Drawer.Screen name="login" component={Login} />
                 )   
             }
         </Drawer.Navigator>

@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Alert, Button, Text, TextInput, View } from 'react-native';
 
-const LoginScreen = ({ navigation }: any) => {
+const Login = ({ navigation }: any) => {
     const router = useRouter(); 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +18,7 @@ const LoginScreen = ({ navigation }: any) => {
             console.log(navigation);
             // navigation.replace("HomeScreen");
 
-            router.navigate('/HomeScreen');
+            router.navigate('/Home');
 
         } catch (error) {
             Alert.alert("Login failed, check your crendentials")
@@ -34,4 +34,4 @@ const LoginScreen = ({ navigation }: any) => {
         </View>
     )
 }
-export default LoginScreen
+export default Login

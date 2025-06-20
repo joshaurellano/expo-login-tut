@@ -5,12 +5,12 @@ import { Button, Text, View } from 'react-native';
 
 axios.defaults.withCredentials = true;
 
-const HomeScreen =({navigation }: any) => {
+const Home =({navigation }: any) => {
     const router = useRouter(); 
     const handleLogout = async () => {
         await axios.post('http://localhost:4000/auth/logout',{withCredentials: true})
         // navigation.replace("Login");
-        router.navigate('/LoginScreen');
+        router.navigate('/Login');
     }
 
 return (
@@ -21,4 +21,4 @@ return (
     )
 }
 
-export default HomeScreen;
+export default Home;
