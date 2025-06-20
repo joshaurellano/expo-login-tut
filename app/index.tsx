@@ -21,7 +21,6 @@ export default function Index({navigation }: any) {
             } catch (error) {
                 setToken('')
             }
-           
             setLoading(false);
         };
         checkUser();

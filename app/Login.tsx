@@ -14,16 +14,12 @@ const Login = ({ navigation }: any) => {
                 username,
                 password
             });
-            console.log(response.data)
-            console.log(navigation);
-            // navigation.replace("HomeScreen");
-
-            router.navigate('/Home');
-
+             router.replace('/Home');
         } catch (error) {
             Alert.alert("Login failed, check your crendentials")
         }
     }
+
     return (
         <View style={{ padding: 20}}>
             <Text>Username: </Text>
