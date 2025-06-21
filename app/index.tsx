@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Alert, Button, Text, TextInput, View } from 'react-native';
+const apiUrl = process.env.EXPO_PUBLIC_API_URL
 
 const Login = ({ navigation }: any) => {
     const router = useRouter(); 
@@ -10,7 +11,7 @@ const Login = ({ navigation }: any) => {
 
     const handleLogin = async () => {
         try{
-            const response = await axios.post('http://localhost:4000/auth/login',{
+            const response = await axios.post(`${apiUrl}/auth/login`,{
                 username,
                 password
             });
